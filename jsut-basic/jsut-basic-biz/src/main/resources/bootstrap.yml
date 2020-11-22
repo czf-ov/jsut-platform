@@ -1,0 +1,26 @@
+server:
+  port: 6001
+spring:
+  application:
+    name: jsut-basic
+  cloud:
+    nacos:
+      discovery:
+        server-addr: jsut-register:8848
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://jsut-mysql:3306/jsut?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+  flyway:
+    enabled: true
+    user: root
+    password: 123456
+    url: jdbc:mysql://jsut-mysql:3306/jsut?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+
+  profiles:
+    active: dev
+  # 当项目中有重名的bean，后面的覆盖前面的
+  main:
+    allow-bean-definition-overriding: false
