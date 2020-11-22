@@ -1,0 +1,22 @@
+server:
+  port: 8001
+
+spring:
+  application:
+    name: just-register
+  cloud:
+    nacos:
+      config:
+        server-addr: jsut-register:8848
+        file-extension: yml
+        group: JSUT_DEV
+        namespace: 62adbc24-428a-453c-a0f1-26f9312051d6
+      discovery:
+        server-addr: jsut-register:8848
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
