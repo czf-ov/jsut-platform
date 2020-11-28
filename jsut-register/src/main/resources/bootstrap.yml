@@ -3,20 +3,16 @@ server:
 
 spring:
   application:
-    name: just-register
+    name: jsut-register
+  profiles:
+    active: dev
   cloud:
     nacos:
-      config:
-        server-addr: jsut-register:8848
-        file-extension: yml
-        group: JSUT_DEV
-        namespace: 62adbc24-428a-453c-a0f1-26f9312051d6
       discovery:
-        server-addr: jsut-register:8848
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-
+        server-addr: ${JSUT_REGISTER:jsut-register}:8848
+        register-enabled: true
+        namespace: fb518a13-98d0-4b55-94e0-7611626b05ca
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        namespace: ${spring.cloud.nacos.discovery.namespace}
+        file-extension: yml

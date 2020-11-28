@@ -3,24 +3,18 @@ server:
 spring:
   application:
     name: jsut-basic
+  profiles:
+    active: dev
   cloud:
     nacos:
       discovery:
-        server-addr: jsut-register:8848
-  datasource:
-    type: com.zaxxer.hikari.HikariDataSource
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    username: root
-    password: 123456
-    url: jdbc:mysql://jsut-mysql:3306/jsut?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
-  flyway:
-    enabled: true
-    user: root
-    password: 123456
-    url: jdbc:mysql://jsut-mysql:3306/jsut?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
-
-  profiles:
-    active: dev
+        server-addr: ${JSUT_BASIC:jsut-basic}:8848
+        register-enabled: true
+        namespace: fb518a13-98d0-4b55-94e0-7611626b05ca
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        namespace: ${spring.cloud.nacos.discovery.namespace}
+        file-extension: yml
   # 当项目中有重名的bean，后面的覆盖前面的
   main:
     allow-bean-definition-overriding: false
