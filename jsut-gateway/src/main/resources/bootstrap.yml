@@ -1,0 +1,28 @@
+server:
+  port: 9001
+spring:
+  application:
+    name: jsut-gateway
+  profiles:
+    active: dev
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+      # jsut-basic模块
+      - id: jsut-basic
+        uri: lb://jsut-basic
+        predicates:
+        - Path=/basic/**
+      default-filters:
+        # 表示截断路径前缀的数量
+        - StripPrefix=1
+
+    nacos:
+      discovery:
+        server-addr: ${JSUT_REGISTER:jsut-register}:8848
+        namespace: fb518a13-98d0-4b55-94e0-7611626b05ca
+        register-enabled: true
+
