@@ -1,19 +1,18 @@
 server:
-  port: 8001
-
+  port: 7001
 spring:
   application:
-    name: jsut-register
+    name: jsut-upms
   profiles:
     active: dev
   cloud:
     nacos:
       discovery:
-        server-addr: ${JSUT_REGISTER:jsut-register}:8848
-        register-enabled: true
+        server-addr: ${JSUT_REGISTER:jsut_register}:8848
         namespace: fb518a13-98d0-4b55-94e0-7611626b05ca
+        register-enabled: true
       config:
+        file-extension: yml
         server-addr: ${spring.cloud.nacos.discovery.server-addr}
         namespace: ${spring.cloud.nacos.discovery.namespace}
-        file-extension: yml
         shared-configs: application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}

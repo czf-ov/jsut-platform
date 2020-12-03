@@ -9,16 +9,17 @@ spring:
     gateway:
       discovery:
         locator:
+          # 让gateway可以发现注册中心的服务
           enabled: true
+      default-filters:
+        # 表示截断路径前缀的数量
+        - StripPrefix=1
       routes:
       # jsut-basic模块
       - id: jsut-basic
         uri: lb://jsut-basic
         predicates:
         - Path=/basic/**
-      default-filters:
-        # 表示截断路径前缀的数量
-        - StripPrefix=1
 
     nacos:
       discovery:
