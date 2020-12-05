@@ -1,9 +1,8 @@
 package com.czf.upms.config;
 
-import com.baomidou.mybatisplus.core.injector.ISqlInjector;
-import com.baomidou.mybatisplus.extension.injector.LogicSqlInjector;
+import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
-import com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,22 +25,16 @@ public class MybaitsPlusConfigurer {
         return new PaginationInterceptor();
     }
 
-
-    /**
-     * 逻辑删除
-     *
-     * @return
-     */
     @Bean
-    public ISqlInjector sqlInjector() {
-        return new LogicSqlInjector();
+    public MybatisPlusInterceptor mybatisPlusInterceptor() {
+        MybatisPlusInterceptor mybatisPlusInterceptor = new MybatisPlusInterceptor();
+        mybatisPlusInterceptor.addInnerInterceptor(paginationInnerInterceptor());
+        return mybatisPlusInterceptor;
     }
 
-    /**
-     * SQL执行效率插件
-     */
     @Bean
-    public PerformanceInterceptor performanceInterceptor() {
-        return new PerformanceInterceptor();
+    public PaginationInnerInterceptor paginationInnerInterceptor() {
+        return new PaginationInnerInterceptor();
     }
+
 }

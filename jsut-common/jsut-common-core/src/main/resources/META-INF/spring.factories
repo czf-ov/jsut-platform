@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.czf.common.core.config.JacksonConfiguration,\
+  com.czf.common.core.config.WebMvcConfig
+  
