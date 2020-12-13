@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
  * @Date: 2020/12/1 21:09
  */
 @Configuration
-@MapperScan("com.czf.upms.mapper.UserMapper")
+@MapperScan("com.czf.upms.mapper.SysUserMapper")
 public class MybaitsPlusConfigurer {
 
     /**

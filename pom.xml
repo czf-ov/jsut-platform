@@ -27,6 +27,7 @@
         <docker-maven-plugin>0.4.12</docker-maven-plugin>
         <swagger.fox.version>2.9.2</swagger.fox.version>
         <hutool.version>5.3.10</hutool.version>
+        <swagger.fox.version>2.9.2</swagger.fox.version>
         <!--todo-->
         <docker.url>http://127.0.0.1:4243</docker.url>
         <registry.url>127.0.0.1:5000</registry.url>
@@ -42,6 +43,19 @@
     </modules>
 
     <dependencies>
+        <!--配置文件处理器-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!--配置文件加解密-->
+        <dependency>
+            <groupId>com.github.ulisesbocchio</groupId>
+            <artifactId>jasypt-spring-boot-starter</artifactId>
+            <version>${jasypt.version}</version>
+        </dependency>
+
         <!--  监控  -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

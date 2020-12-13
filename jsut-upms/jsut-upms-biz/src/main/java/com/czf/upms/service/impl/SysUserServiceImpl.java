@@ -1,13 +1,12 @@
 package com.czf.upms.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.czf.dto.UserDTO;
-import com.czf.entity.User;
-import com.czf.upms.mapper.UserMapper;
-import com.czf.upms.service.UserService;
+import com.czf.dto.SysUserSearchDTO;
+import com.czf.entity.SysUser;
+import com.czf.upms.mapper.SysUserMapper;
+import com.czf.upms.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,13 +15,13 @@ import org.springframework.stereotype.Service;
  * @Date: 2020/12/1 20:50
  */
 @Service
-public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
+public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements SysUserService {
 
     @Autowired
-    private UserMapper userMapper;
+    private SysUserMapper userMapper;
 
     @Override
-    public IPage<User> getUserPage(Page page, UserDTO userDTO) {
+    public IPage<SysUser> getUserPage(Page page, SysUserSearchDTO userDTO) {
         return userMapper.selectUserPage(page, userDTO);
     }
 

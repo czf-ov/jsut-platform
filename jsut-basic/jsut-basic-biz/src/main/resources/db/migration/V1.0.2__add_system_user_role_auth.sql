@@ -10,9 +10,11 @@ CREATE TABLE `sys_dept` (
   `dept_id` int(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL COMMENT '部门名称',
   `sort` int(11) DEFAULT NULL COMMENT '排序',
+  `create_by` varchar(64) DEFAULT NULL COMMENT '创建者',
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_by` varchar(64) DEFAULT NULL COMMENT '更新者',
   `update_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
-  `del_flag` char(1) DEFAULT '0' COMMENT '是否删除  -1：已删除  0：正常',
+  `del_flag` tinyint(1) DEFAULT '0' COMMENT '是否删除  1：已删除  0：正常',
   `parent_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`dept_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='部门管理';
@@ -43,19 +45,18 @@ DROP TABLE IF EXISTS `sys_log`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sys_log` (
   `id` bigint(64) NOT NULL AUTO_INCREMENT COMMENT '编号',
-  `type` char(1) DEFAULT '1' COMMENT '日志类型',
+  `type` tinyint(1) DEFAULT '1' COMMENT '日志类型',
   `title` varchar(255) DEFAULT '' COMMENT '日志标题',
   `service_id` varchar(32) DEFAULT NULL COMMENT '服务ID',
   `create_by` varchar(64) DEFAULT NULL COMMENT '创建者',
   `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `update_time` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `remote_addr` varchar(255) DEFAULT NULL COMMENT '操作IP地址',
   `user_agent` varchar(1000) DEFAULT NULL COMMENT '用户代理',
   `request_uri` varchar(255) DEFAULT NULL COMMENT '请求URI',
   `method` varchar(10) DEFAULT NULL COMMENT '操作方式',
   `params` text COMMENT '操作提交的数据',
   `time` mediumtext COMMENT '执行时间',
-  `del_flag` char(1) DEFAULT '0' COMMENT '删除标记',
+  `del_flag` tinyint(1) DEFAULT '0' COMMENT '删除标记',
   `exception` text COMMENT '异常信息',
   PRIMARY KEY (`id`),
   KEY `sys_log_create_by` (`create_by`),
@@ -81,11 +82,13 @@ CREATE TABLE `sys_menu` (
   `icon` varchar(32) DEFAULT NULL COMMENT '图标',
   `component` varchar(64) DEFAULT NULL COMMENT 'VUE页面',
   `sort` int(11) DEFAULT '1' COMMENT '排序值',
-  `keep_alive` char(1) DEFAULT '0' COMMENT '0-开启，1- 关闭',
-  `type` char(1) DEFAULT NULL COMMENT '菜单类型 （0菜单 1按钮）',
+  `keep_alive` tinyint(1) DEFAULT '0' COMMENT '0-开启，1- 关闭',
+  `type` tinyint(1) DEFAULT NULL COMMENT '菜单类型 （0菜单 1按钮）',
+  `create_by` varchar(64) DEFAULT NULL COMMENT '创建者',
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_by` varchar(64) DEFAULT NULL COMMENT '更新者',
   `update_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  `del_flag` char(1) DEFAULT '0' COMMENT '逻辑删除标记(0--正常 1--删除)',
+  `del_flag` tinyint(1) DEFAULT '0' COMMENT '逻辑删除标记(0--正常 1--删除)',
   PRIMARY KEY (`menu_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='菜单权限表';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -102,9 +105,11 @@ CREATE TABLE `sys_role` (
   `role_name` varchar(64) NOT NULL,
   `role_code` varchar(64) NOT NULL,
   `role_desc` varchar(255) DEFAULT NULL,
+  `create_by` varchar(64) DEFAULT NULL COMMENT '创建者',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_by` varchar(64) DEFAULT NULL COMMENT '更新者',
   `update_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `del_flag` char(1) DEFAULT '0' COMMENT '删除标识（0-正常,1-删除）',
+  `del_flag` tinyint(1) DEFAULT '0' COMMENT '删除标识（0-正常,1-删除）',
   PRIMARY KEY (`role_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='系统角色表';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -153,10 +158,12 @@ CREATE TABLE `sys_user` (
   `phone` varchar(20) DEFAULT NULL COMMENT '简介',
   `avatar` varchar(255) DEFAULT NULL COMMENT '头像',
   `dept_id` int(11) DEFAULT NULL COMMENT '部门ID',
+  `create_by` varchar(64) DEFAULT NULL COMMENT '创建者',
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_by` varchar(64) DEFAULT NULL COMMENT '更新者',
   `update_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
-  `lock_flag` char(1) DEFAULT '0' COMMENT '0-正常，9-锁定',
-  `del_flag` char(1) DEFAULT '0' COMMENT '0-正常，1-删除',
+  `lock_flag` tinyint(1) DEFAULT '0' COMMENT '0-正常，9-锁定',
+  `del_flag` tinyint(1) DEFAULT '0' COMMENT '0-正常，1-删除',
   PRIMARY KEY (`user_id`),
   KEY `user_idx1_username` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='用户表';

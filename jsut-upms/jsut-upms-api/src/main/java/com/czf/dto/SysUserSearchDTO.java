@@ -2,6 +2,7 @@ package com.czf.dto;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -9,7 +10,10 @@ import java.time.LocalDateTime;
  * @Date: 2020/12/2 21:09
  */
 @Data
-public class UserDTO {
+public class SysUserSearchDTO implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     private String name;
 
     private String phone;
