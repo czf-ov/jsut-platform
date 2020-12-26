@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.czf.common.core.utils.Res;
 import com.czf.dto.SysUserSearchDTO;
 import com.czf.entity.SysUser;
-import com.czf.upms.service.UserService;
+import com.czf.upms.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class SysUserController {
 
     @Autowired
-    private UserService userService;
+    private SysUserService userService;
 
     @GetMapping("/page")
     public Res<IPage<SysUser>> getUserPage(Page page, SysUserSearchDTO userDTO) {
