@@ -15,6 +15,7 @@
         <module>jsut-common-core</module>
         <module>jsut-common-swagger</module>
         <module>jsut-common-log</module>
+        <module>jsut-common-security</module>
     </modules>
 
 

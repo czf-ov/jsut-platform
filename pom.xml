@@ -41,6 +41,7 @@
         <module>jsut-common</module>
         <module>jsut-upms</module>
         <module>jsut-msg</module>
+        <module>jsut-auth</module>
     </modules>
 
     <dependencies>
